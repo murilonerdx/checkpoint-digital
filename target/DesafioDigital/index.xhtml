@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+
+<ui:composition template="_template.xhtml">
+    <ui:define name="content">
+        <div class="card product">
+            <h:form id="form">
+                <p:dataView var="setup" value="#{setupBean.setups}" rows="12" paginator="true"
+                            rowsPerPageTemplate="5,10,15"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            gridIcon="pi pi-th-large">
+                    <p:dataViewListItem>
+                        <div class="setup-list-item">
+                            <p:graphicImage name="setup_image.jpg" library="images"/>
+                            <div class="setup-list-detail">
+                                <div class="setup-name">#{setup.name}</div>
+                                <div class="setup-description">#{setup.description}</div>
+                                <p:rating value="0"/>
+                            </div>
+                            <div class="setup-list-action">
+                                <h:outputText value="#{setup.price}" styleClass="setup-price">
+                                    <f:convertNumber currencySymbol="R$" type="currency"/>
+
+                                </h:outputText>
+                                <div class="card">
+                                    <h:form>
+                                        <p:growl id="message" showDetail="true"/>
+
+                                        <p:commandButton value="Details" action="#{confirmView.confirm}" update="message" styleClass="p-mr-2" icon="pi pi-info-circle">
+                                            <p:confirm header="Details of the Seller email" message="#{setup.email}" icon="pi pi-exclamation-triangle"/>
+                                        </p:commandButton>
+
+                                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                                            <p:commandButton value="Close" type="button" styleClass="ui-confirmdialog-yes" />
+                                        </p:confirmDialog>
+                                    </h:form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </p:dataViewListItem>
+                </p:dataView>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+    <ui:define name="content">
+        <p:messages id="messages" showDetail="false" closable="false" autoUpdate="false">
+        </p:messages>
+        <h:form>
+
+            <p:card class="form-card">
+                <f:facet name="title"> New Seller </f:facet>
+                <div class="p-grid ui-fluid">
+                    <div class="p-col-12 p-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                            <p:inputText id="username" placeholder="Username" required="true"
+                                         value="#{sellerBean.seller.nameSeller}"/>
+                            <p:message for="username" display="text"/>
+                        </div>
+
+                        <div class="p-col-12 p-md-4">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+                                <p:inputText id="email" placeholder="Email" required="true"
+                                             value="#{sellerBean.seller.email}"/>
+                                <p:message for="email" display="text"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <f:facet name="footer">
+                    <p:commandButton icon="pi pi-check" value="Save" action="#{sellerBean.save()}">
+                        <f:ajax render="messages" execute="@form"/>
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-times" value="Cancel"
+                                     styleClass="ui-button-secondary" style="margin-left: .5em"/>
+                </f:facet>
+            </p:card>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="2.0"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="mysql" transaction-type="RESOURCE_LOCAL">
+        <class>com.fiap.DesafioDigital.model.Setup</class>
+        <class>com.fiap.DesafioDigital.model.Seller</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.jdbc.driver"
+                      value="com.mysql.jdbc.Driver"/>
+
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost/progamer"/>
+
+            <property name="javax.persistence.jdbc.user" value="murilo"/>
+            <property name="javax.persistence.jdbc.password" value="12345"/>
+
+            <!-- Configurações específicas do Hibernate -->
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.MySQL8Dialect"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

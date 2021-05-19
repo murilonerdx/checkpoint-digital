@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+    <ui:define name="title">Login</ui:define>
+    <ui:define name="header"></ui:define>
+    <ui:define name="content">
+        <p:messages id="messages"><p:autoUpdate/></p:messages>
+        <h:form>
+
+            <p:card class="form-card" style="margin-top: 40px">
+                <f:facet name="title"> New Seller </f:facet>
+                <div class="p-grid ui-fluid">
+                    <div class="p-col-12 p-md-4">
+                        <div class="p-col-12 p-md-4">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                                <p:inputText id="username" placeholder="Username *" required="true"
+                                             requiredMessage="Please enter your username."
+                                             validatorMessage="Invalid username format"
+                                             value="#{sellerBean.seller.username}"/>
+                                <p:message for="username"/>
+
+                            </div>
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+                                <p:inputText id="email" placeholder="Email" required="true" label="email" size="40"
+                                             requiredMessage="Please enter your email address."
+                                             validatorMessage="Invalid email format"
+                                             value="#{sellerBean.seller.email}">
+
+                                    <f:validateRegex
+                                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                                </p:inputText>
+                                <p:message for="email" display="password"/>
+                                <p:watermark for="email" value="Email Address *"/>
+                                <p:message for="email"/>
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-4">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+                                <p:inputText id="senha" placeholder="Senha" required="true" label="senha" size="40"
+                                             requiredMessage="Please enter your password"
+                                             validatorMessage="Invalid password format"
+                                             value="#{sellerBean.seller.senha}" type="password">
+
+                                </p:inputText>
+                                <p:message for="senha" display="password"/>
+                                <p:watermark for="senha" value="Digita uma senha valida *"/>
+                                <p:message for="senha"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <f:facet name="footer">
+                    <p:commandButton icon="pi pi-check" value="Cadastrar" action="#{sellerBean.save()}">
+                        <f:ajax render="messages" execute="@form"/>
+                    </p:commandButton>
+                    <a href="login.xhtml" style="margin: 5px">Ja tenho cadastro ?, fazer login</a>
+                </f:facet>
+
+            </p:card>
+
+
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
+
+
+</html>
